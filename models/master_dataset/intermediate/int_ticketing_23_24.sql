@@ -21,12 +21,12 @@ combined AS (
       USING (match)
 ),
 
--- remove 'PARIS VS ' from match & save as opp; calculate date difference between match_date and purchased_on;
+-- remove 'CAPITAL CITY VS ' from match & save as opp; calculate date difference between match_date and purchased_on;
 -- create 'is_noshow' column where if entry_timestamp is null, the supporter is a no-show.
 
 cleaned AS (
     SELECT *,
-      REPLACE(match, 'PARIS VS ', '') AS opp,
+      REPLACE(match, 'CAPITAL CITY VS ', '') AS opp,
       DATE_DIFF(match_date, purchased_on, DAY) AS lead_time,
       CASE WHEN entry_timestamp IS NULL THEN 1
         ELSE 0
@@ -34,13 +34,13 @@ cleaned AS (
     FROM combined
 ),
 
--- replace ' (CDF)' from opp and save as opponent.
+-- replace ' (POK)' from opp and save as opponent.
 -- Calculate Gross Spend as the maximum value of primary price & secondary price.
 -- Denote whether a sale is primary or secondary using case when.
 
 augmented AS (
     SELECT *,
-      REPLACE (opp, ' (CDF)', '') AS opponent,
+      REPLACE (opp, ' (POK)', '') AS opponent,
       CASE WHEN secondary_price > 0 THEN secondary_price
         ELSE primary_price
         END AS gross_spend,

@@ -1,21 +1,21 @@
 WITH source AS (
     SELECT *
-    FROM {{ source('core', 'ticketing_23_24') }}
+    FROM {{ source('capital_city_digital_analytics', 'ticketing_23_24') }}
 ),
 
 renamed AS (
     SELECT Uuid AS fan_id,
-      {{ adapter.quote("Pays _Union_")}} AS country,
-      {{ adapter.quote("Compétition")}} AS competition,
-      {{ adapter.quote("Séance")}} AS match,
-      {{ adapter.quote("Date de Vente")}} AS purchased_on,
-      {{ adapter.quote("N_Commande")}} AS order_id,
+      {{ adapter.quote("Country _Aligned_")}} AS country,
+      {{ adapter.quote("Competition")}} AS competition,
+      {{ adapter.quote("Match")}} AS match,
+      {{ adapter.quote("Sale Date")}} AS purchased_on,
+      {{ adapter.quote("Order Num")}} AS order_id,
       Contingent AS contingent,
-      {{ adapter.quote("Catégorie")}} AS seat_category,
-      N_Billet AS ticket_number,
-      {{ adapter.quote("Montant Primaire")}} AS primary_price,
-      {{ adapter.quote("Montant Secondaire")}} AS secondary_price,
-      {{ adapter.quote("Date Entrée")}} AS entry_timestamp
+      {{ adapter.quote("Seat Category")}} AS seat_category,
+      {{ adapter.quote("Ticket Num")}} AS ticket_number,
+      {{ adapter.quote("Primary Price")}} AS primary_price,
+      {{ adapter.quote("Secondary Price")}} AS secondary_price,
+      {{ adapter.quote("Entry Date")}} AS entry_timestamp
     FROM source
 ),
 
