@@ -17,11 +17,11 @@ augmented AS (
         THEN 1
         ELSE 0
         END AS consent_partners_aug,
-      consent_CCFC,
-      CASE WHEN consent_CCFC = 'Oui'
+      consent_CC,
+      CASE WHEN consent_CC = 'Oui'
         THEN 1
         ELSE 0
-        END AS consent_CCFC_aug,
+        END AS consent_CC_aug,
       DATE_DIFF('2026-03-01', birthday, YEAR) AS age
     FROM source
 ),
@@ -32,7 +32,7 @@ final AS (
       country_code,
       birthday,
       consent_partners_aug AS consent_partners,
-      consent_CCFC_aug AS consent_CCFC,
+      consent_CC_aug AS consent_CC,
       age
     FROM augmented
 )

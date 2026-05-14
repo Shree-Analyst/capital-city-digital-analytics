@@ -1,15 +1,15 @@
 WITH source AS (
     SELECT *
-    FROM {{ source('core', 'profiles') }}
+    FROM {{ source('capital_city_digital_analytics', 'profiles') }}
 ),
 
 renamed AS (
     SELECT Uuid AS fan_id,
-      {{ adapter.quote("Civilité")}} AS gender,
-      `Code pays_zone géographique` AS country_code,
-      `Date de naissance` AS birthday,
-      `Optin : Partners` AS consent_partners,
-      `Optin : CCFC` AS consent_CCFC
+      'Gender' AS gender,
+      `Country Code` AS country_code,
+      `Date of birth` AS birthday,
+      `Optin: Partners` AS consent_partners,
+      `Optin: CC` AS consent_CC
     FROM source
 ),
 
