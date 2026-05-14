@@ -3,7 +3,7 @@ version: 2
 sources:
   - name: capital_city_digital_analytics
     database: capital-city-digital-analytics
-    schema: capital-city-digital-analytics
+    schema: capital_city_digital_analytics
     tables:
       - name: profiles
         description: Table grain = 1 supporter.
