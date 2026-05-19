@@ -8,7 +8,7 @@ augmented AS (
       gender,
       CASE WHEN gender = 'MME' THEN 'F'
         WHEN gender = 'Mme' THEN 'F'
-        ELSE gender
+        ELSE ''
         END AS gender_aug,
       country_code,
       birthday,
